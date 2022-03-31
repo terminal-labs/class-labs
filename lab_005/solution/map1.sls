@@ -1,5 +1,5 @@
 # file: /srv/salt/map1.sls
-{% import_yaml 'files/variables.yaml' as groceries %}
+{% import_yaml 'files/groceries.yaml' as groceries %}
 
 create_multiple_lines:
   cmd.run:

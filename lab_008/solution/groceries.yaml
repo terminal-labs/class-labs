@@ -1,0 +1,6 @@
+# file: /srv/pillar/variables.yaml
+
+item1: eggs
+item2: cheese
+item3: butter
+

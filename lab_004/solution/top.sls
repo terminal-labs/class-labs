@@ -3,3 +3,4 @@
 base:
   '*':
     - groceries
+    - party_favors

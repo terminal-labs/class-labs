@@ -1,4 +1,4 @@
-# file: /srv/pillar/variables.yaml
+# file: /lab_005/solution/groceries.yaml
 
 cart:
   - cupcake
