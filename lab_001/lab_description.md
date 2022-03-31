@@ -14,7 +14,7 @@ create_multiple_lines:
        - echo 'the value is '
 ```
 
-NOTE: The cmd.run command is executing whatever value `name` or `names` is given as a bash/sh command in the minion's server's shell.
+NOTE: The `cmd.run` command is executing whatever value `name` or `names` is given as a bash/sh command in the minion's server's shell.
 
 
 ## Assignment
