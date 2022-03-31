@@ -24,14 +24,14 @@ Expand the salt state with a jinja for loop that loops through the list of assig
 ```
 
 ### Tip
-- a jinja variable is referenced with double curly braces: `{{ VARIABLE }}`
+- A jinja variable is referenced with double curly braces: `{{ VARIABLE }}`
 - A jinja for loop has the basic structure:
 ```JINJA
 {% for VARIABLE in VARIABLE %}
 YAML
 {% endfor %}
 ```
-- To test your salt state without actual execution you can run either or both commands, but be aware they dont do the exact same thing and can return different results from the two commands.
+- To test your salt state without actual execution you can run either or both commands, but be aware they don't do the exact same thing and can return different results.
 ```BASH
 $ salt \* state.apply forloop1 test=true --out=yaml
 or
