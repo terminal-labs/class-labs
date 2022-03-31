@@ -31,7 +31,7 @@ Expand the salt state with a jinja for loop that loops through the list of assig
 YAML
 {% endfor %}
 ```
-- to test your salt state you can run either or both commands, but be aware they dont do the exact same thing and can get different results from the two commands.
+- To test your salt state without actual execution you can run either or both commands, but be aware they dont do the exact same thing and can return different results from the two commands.
 ```BASH
 $ salt \* state.apply forloop1 test=true --out=yaml
 or
