@@ -5,7 +5,7 @@ The previous assignment required you to import and loop through the variables co
 ```YAML
 # file: /srv/pillar/groceries.sls
 
-list:
+groceries:
   - cupcake
   - chocolate
   - buns
@@ -13,7 +13,7 @@ list:
 ```YAML
 # file: /srv/pillar/party_favors.sls
 
-list:
+party_favors:
   - balloons
   - face_paint
   - shin_guards
@@ -41,16 +41,16 @@ create_multiple_lines_party_favors:
 ```
 
 ## Assignment
-Expand the salt states with jinja 'for-loop's that loop through the pillar data in `/srv/pillar/groceries.sls` and `/srv/pillar/party_favors.sls` creating new lines. The 'for-loop's will only encapsulate the echo lines of the salt states and will have an added jinja variable as part of the echo line.
+Expand the salt states with jinja for-loop's that loop through the pillar data in `/srv/pillar/groceries.sls` and `/srv/pillar/party_favors.sls` creating new lines. The for-loop's will only encapsulate the echo lines of the salt states and will have an added jinja variable as part of the echo line.
 ```YAML
-   - echo 'the value is <value>'
+   - echo "the value is {{ value }}"
 ```
 
 ### Tip
 - Because our pillar files `/srv/pillar/groceries.sls` and `/srv/pillar/party_favors.sls` are direct children of `srv/pillar/`, salt already knows exactly where to look for them. No other file system specification is necessary.  
 - The data in the pillar file, `/srv/pillar/groceries.sls` is a YAML formatted dictionary. YAML is derived from JSON.
 ```YAML
-list:
+groceries:
   - cupcake
   - chocolate
   - buns
@@ -66,7 +66,7 @@ is equivalent to JSON:
 }
 ```
 - `groceries` can be imported as a pillar variable into an sls file using the syntax `pillar['groceries']`
-- `party_favors` can be imported as a pillar variable into an sls file using the syntax `pillar['partyfavors']`
+- `party_favors` can be imported as a pillar variable into an sls file using the syntax `pillar['party_favors']`
 - To check what pillar data is available to a minion you can run the command:
 ```BASH
 $ salt '<minion-id>' pillar.items
