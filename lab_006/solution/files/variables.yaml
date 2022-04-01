@@ -1,6 +1,6 @@
 # file: /files/variables.yaml
 
-groceries:
+cart:
   - cupcake
   - chocolate
   - buns
