@@ -1,0 +1,7 @@
+# file: /srv/pillar/variables.yaml
+
+cart:
+  - cupcake
+  - chocolate
+  - buns
+  
