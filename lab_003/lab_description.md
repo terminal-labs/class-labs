@@ -5,7 +5,7 @@ The previous examples used the jinja `set` command to assign a list of strings t
 ```YAML
 # file: /srv/pillar/groceries.sls
 
-list:
+groceries:
   - cupcake
   - chocolate
   - buns
