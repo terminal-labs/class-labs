@@ -45,22 +45,7 @@ Now that we've imported the variables we can loop through them using JINJA like 
 YAML
 {% endfor %}
 ```
-NOTE: By giving our list the name `cart` we actually transformed its data structure. Previously, we represented our data with the YAML structure:
-```YAML
-list:
-  - cupcake
-  - chocolate
-  - buns
-```
-which translates to JSON in the following way:
-```PYTHON
-[
-    'cupcake',
-    'chocolate',
-    'buns'
-]
-```
-Now we are representing our data with the YAML structure:
+NOTE: We are representing our data with the following YAML structure:
 ```YAML
 cart:
   - cupcake
