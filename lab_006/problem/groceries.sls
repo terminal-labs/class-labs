@@ -1,5 +1,3 @@
-
-   
 # file: /srv/pillar/groceries.sls
 
 list:
