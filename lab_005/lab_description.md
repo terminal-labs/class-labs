@@ -1,11 +1,11 @@
 # Pillar file variables - pillar.get
 `lab_005/problem/pillarvalue3.sls` will be placed in `/srv/salt/pillarvalue3.sls` and `lab_005/problem/groceries.sls` will be placed in `/srv/pillar/groceries.sls` on your master's file system. 
 
-The previous examples imported pillar data using the basic `pillar['variable']` method. There is another way of importing pillar data that automatically applies default values if no matching pillar data is found. As before, the pillar file `/srv/pillar/groceries.sls` is provided for you.
+The previous examples imported pillar data using the basic `pillar['<variable>']` method. There is another way of importing pillar data that automatically applies default values if no matching pillar data is found. As before, the pillar file `/srv/pillar/groceries.sls` is provided for you.
 ```YAML
 # file: /srv/pillar/groceries.sls
 
-list:
+groceries:
   - cupcake
   - chocolate
   - buns
@@ -39,14 +39,13 @@ create_multiple_lines:
 ```
 
 ## Assignment
-Expand the salt state with a jinja 'for loop' that loops through the pillar data in `/srv/pillar/groceries.sls` and creates new lines. Pillar data must be imported using the `salt['pillar.get']` method that allows for the inclusion of default values. The 'for loop' will only encapsulate the echo line of the salt state and will have an added jinja variable as part of the echo line. Perform 2 runs: the first run using the pillar file provided to you, and the second run with the pillar data deleted. 
+Expand the salt state with a jinja for-loop that loops through the pillar data in `/srv/pillar/groceries.sls` and creates new lines. Pillar data must be imported using the `salt['pillar.get']` method that allows for the inclusion of default values. The for-loop will only encapsulate the echo line of the salt state and will have an added jinja variable as part of that line. Perform 2 runs: the first run using the pillar file provided to you, and the second run with the pillar data deleted. 
 
 
 ### Tip
-- Because our pillar file `/srv/pillar/groceries.sls` is a direct child of `srv/pillar/`, salt already knows exactly where to look. No other file system specification is necessary.  
 - The data in the pillar file, `/srv/pillar/groceries.sls` is a YAML formatted dictionary. YAML is derived from JSON.
 ```YAML
-list:
+groceries:
   - cupcake
   - chocolate
   - buns
