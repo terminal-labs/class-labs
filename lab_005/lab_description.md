@@ -1,7 +1,7 @@
-# Pillar file variables
-`lab_003/problem/pillarvalue1.sls` will be placed in `/srv/salt/pillarvalue1.sls` and `lab_003/problem/groceries.sls` will be placed in `/srv/pillar/groceries.sls` on your master's file system. 
+# Pillar file variables - pillar.get
+`lab_005/problem/pillarvalue3.sls` will be placed in `/srv/salt/pillarvalue3.sls` and `lab_003/problem/groceries.sls` will be placed in `/srv/pillar/groceries.sls` on your master's file system. 
 
-The previous examples used the jinja `set` command to assign a list of strings to a variable. In this example, the list of strings exists in a separate pillar file `/srv/pillar/groceries.sls` formatted in YAML. 
+The previous examples imported pillar data using the basic `pillar['variable']` method. There is another way of importing pillar data that auutomatically applies default values if no matching pillar data is found. As before, the pillar file `/srv/pillar/groceries.sls` is provided for you.
 ```YAML
 # file: /srv/pillar/groceries.sls
 
@@ -10,30 +10,23 @@ list:
   - chocolate
   - buns
 ```
-
-The pillar data needs to be made accessable to your salt state with a corresponding `top.sls` file which is not provided for you. A basic `top.sls` file is structured like so:
+Also as before, the pillar data needs to be made accessable to your salt state with a corresponding `top.sls` file which is not provided for you. A basic `top.sls` file is structured like so:
 ```YAML
 base:
   '*':
     - packages
 ```
-`base` stands for base environment and is the environment in which this data will be made available. Examples of other environments could be `dev` or `test`. `'*'` specifies which minions will be able to access the data; all have access in this example as denoted by `'*'`. Minion id's, ie `local-minion`, or minion types described by grains, ie `'os:Debian'` could also be used here. `-packages` describes the salt state files (or package directories if structured correctly in the file system) that will be made accessable to those declared minions.
-You may visit https://docs.saltproject.io/en/latest/topics/best_practices.html for best practices on structuring pillar files. 
-
-
-The same partially completed salt state from `lab-001/problem/forloop1.sls` is provided for you:
+The same partially completed salt state from `lab-003/problem/pillarvalue1.sls` is provided for you:
 ```YAML
-create_pillar_multi_line:
+create_multiple_lines:
   cmd.run:
     - names:
       - echo 'the value is: '
 ```
 
 ## Assignment
-Expand the salt state with a jinja 'for loop' that loops through the pillar data in `/srv/pillar/groceries.sls` and creates new lines. The 'for loop' will only encapsulate the echo line of the salt state and will have an added jinja variable as part of the echo line.
-```YAML
-   - echo 'the value is <value>'
-```
+Expand the salt state with a jinja 'for loop' that loops through the pillar data in `/srv/pillar/groceries.sls` and creates new lines. Pillar data must be imported using the `salt['pillar.get']` method that allows for the inclusion of default values. The 'for loop' will only encapsulate the echo line of the salt state and will have an added jinja variable as part of the echo line. Perform 2 runs; the first run using the pillar file as was provided to you, and the second run with the last 2 items `chocolate` and `buns` deleted. 
+
 
 ### Tip
 - Because our pillar file `/srv/pillar/groceries.sls` is a direct child of `srv/pillar/`, salt already knows exactly where to look. No other file system specification is necessary.  
@@ -54,7 +47,7 @@ is equivalent to JSON:
   ]
 }
 ```
-- `groceries` can be imported as a pillar variable into an sls file using the syntax `pillar['groceries']`
+- `groceries` can be imported as a pillar variable into an sls file using the syntax salt['pillar.get']('groceries', ['a', 'b', 'c']) where `groceries` is the variable being imported and `['a', 'b', 'c']` are the default variables to use in case certain pillar data is missing. 
 - To check what pillar data is available to a minion you can run the command:
 ```BASH
 $ salt '<minion-id>' pillar.items
