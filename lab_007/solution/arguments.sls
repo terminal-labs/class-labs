@@ -4,7 +4,7 @@
 create_multiple_lines:
   cmd.run:
     - shell: /bin/bash
-    - cwd: /home/ubuntu/lab_006
+    - cwd: /home/ubuntu
     - names:
       - pwd
 {% for value in values %}
