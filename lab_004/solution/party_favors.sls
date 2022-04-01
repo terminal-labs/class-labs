@@ -1,6 +1,6 @@
 # file: /srv/pillar/party_favors.sls
 
-list:
+party_favors:
   - balloons
   - face_paint
   - shin_guards
