@@ -30,16 +30,16 @@ create_pillar_multi_line:
 ```
 
 ## Assignment
-Expand the salt state with a jinja 'for loop' that loops through the pillar data in `/srv/pillar/groceries.sls` and creates new lines. The 'for loop' will only encapsulate the echo line of the salt state and will have an added jinja variable as part of the echo line.
+Expand the salt state with a jinja for-loop that loops through the pillar data in `/srv/pillar/groceries.sls` and creates new lines. The for-loop will only encapsulate the echo line of the salt state and will have an added jinja variable as part of that line.
 ```YAML
-   - echo 'the value is <value>'
+   - echo "the value is {{ value }}"
 ```
 
 ### Tip
 - Because our pillar file `/srv/pillar/groceries.sls` is a direct child of `srv/pillar/`, salt already knows exactly where to look. No other file system specification is necessary.  
 - The data in the pillar file, `/srv/pillar/groceries.sls` is a YAML formatted dictionary. YAML is derived from JSON.
 ```YAML
-list:
+groceries:
   - cupcake
   - chocolate
   - buns
