@@ -1,5 +1,5 @@
 # Map file variables
-`lab_006/problem/map1.sls` will be placed in `/srv/salt/map1.sls` on your master's file system. Up until now we've only imported variables from pillar files like `/srv/pillar/groceries.sls` which is provided. However, sometimes its wise to keep variable files (or map files) contained within a package on a file system in the following way:
+`lab_006/problem/map1.sls` will be placed in `/srv/salt/map1.sls` on your master's file system. Up until now we've only imported variables from pillar files like `/srv/pillar/groceries.sls` which we've provided for you again here. However, sometimes its wise to keep variable files (or map files) contained within a package on a file system in the following way:
 ```BASH
 .
 └── package_name
@@ -7,7 +7,7 @@
     └── files
         └── variables.yaml
 ```
-In this scenario, `map1.sls` is the salt state that will be importing variables from `variables.yaml`. In this exercise we will transorm our `/srv/pillar/groceries.sls` pillar file into a `variables.yaml` file located in a `files/` directory which will be the sister of our `/srv/salt/map1.sls` salt state. For the purpose of this lab using the `srv/salt` root directory as your package head is sufficient. So your file system may look like:
+In this scenario, `map1.sls` is the salt state file that will be importing variables from `variables.yaml`. In this exercise we will transorm our `/srv/pillar/groceries.sls` pillar file into a `variables.yaml` file located in a `files/` directory which will be the sister of our `/srv/salt/map1.sls` salt state file. For the purpose of this lab, using the `srv/salt/` root directory as your package head is sufficient. So your file system may look like:
 ```BASH
 ├── srv
 │   └── salt
@@ -24,7 +24,7 @@ list:
   - chocolate
   - buns
 ```
-Lets structure our variables.yaml file a bit differently and give our list the name cart:
+Lets structure our variables.yaml file a bit differently and give our `list` the name `cart`:
 ```YAML
 # file: /files/variables.yaml
 
@@ -33,11 +33,11 @@ cart:
   - chocolate
   - buns
 ```
-Salt has the logic to import pillar files built-in and therefore it was not necessary to specify where we were importing the variabales from in the previous examples. However, this time we need to specify where and how we're importing variables with the following JINJA:
+Salt has the logic to import pillar files built-in and therefore it was not necessary to specify where we were importing the variables from in the previous examples. However, this time we need to specify where and how we're importing variables with the following JINJA:
 ```JINJA
 {% import_yaml 'files/variables.yaml' as groceries %}
 ```
-`import_yaml` the format of the data to be imported, `'files/variables.yaml'` is a relative path to the location of that data, and `groceries` sets the variable name of the dataset. 
+`import_yaml` indicates the format of the data we're importing, `'files/variables.yaml'` is a relative path to the location of that data, and `groceries` sets the variable name of the imported dataset. 
 
 Now that we've imported the variables we can loop through them using JINJA like before:
 ```JINJA
@@ -45,7 +45,7 @@ Now that we've imported the variables we can loop through them using JINJA like 
 YAML
 {% endfor %}
 ```
-NOTE: By giving our list the name `cart` we actually changed its data structure. Previously, we represented our data with the YAML:
+NOTE: By giving our list the name `cart` we actually transformed its data structure. Previously, we represented our data with the YAML structure:
 ```YAML
 list:
   - cupcake
@@ -60,7 +60,7 @@ which translates to JSON in the following way:
     'buns'
 ]
 ```
-Now we are representing oour data with the YAML:
+Now we are representing our data with the YAML structure:
 ```YAML
 cart:
   - cupcake
@@ -82,11 +82,16 @@ So its helpful to remember we are importing a dictionary of lists this time, rat
 
 ## Assignment
 
-Transform the provided `/srv/salt/groceries.sls` pillar file into a map file named `variables.yaml` contained with a `files` directory, ie `files/variables.yaml` and replace the provided jinja logic with the logic for looping through a map file as described above.
+Transform the provided `/srv/salt/groceries.sls` pillar file into a map file named `variables.yaml` contained within a `files` directory, ie `files/variables.yaml` and replace the provided JINJA logic with logic for looping through a map file:
+```JINJA
+{% for c in groceries['cart'] %}
+YAML
+{% endfor %}
+```
 
 
 ### Tip
-- Remember to declare the variable import using the following syntax:
+- Remember to declare your imports using the following syntax:
 ```JINJA
 {% import_yaml '<relative_path_to_file>' as <variable_name> %}
 ```
@@ -106,6 +111,7 @@ is equivalent to the JSON:
       'buns'
   ]
 }
+```
 - To test your salt state without actual execution you can run either or both commands, but be aware they don't do the exact same thing and can return different results.
 ```BASH
 $ salt \* state.apply forloop1 test=true --out=yaml
@@ -122,4 +128,4 @@ create_multiple_lines:
       - echo 'the value is cupcake'
       - echo 'the value is chocolate'
       - echo 'the value is buns'
-```
+ ```
