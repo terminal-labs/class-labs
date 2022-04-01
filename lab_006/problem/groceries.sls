@@ -1,6 +1,6 @@
 # file: /srv/pillar/groceries.sls
 
-list:
+groceries:
   - cupcake
   - chocolate
   - buns
