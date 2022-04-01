@@ -6,6 +6,7 @@ create_multiple_lines:
     - shell: /bin/bash
     - cwd: /home/ubuntu/lab_006
     - names:
+      - pwd
 {% for value in values %}
       - echo 'the value is {{ value }}'
 {% endfor %}
