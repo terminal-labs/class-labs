@@ -2,6 +2,6 @@
 
 list:
   - balloons
-  - wristbands
+  - face_paint
   - shin_guards
   
