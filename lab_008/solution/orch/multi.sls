@@ -1,4 +1,4 @@
-# File:/srv/salt/orch/services.sls
+# File:/srv/salt/orch/multi.sls
 
 multiple_lines_orch_state:
   salt.state:
