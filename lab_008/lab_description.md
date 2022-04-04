@@ -17,9 +17,9 @@ multiple_lines_orch_state:
     - tgt: 'local-minion'
     - sls: multiple_lines
 ```
-`multiple_lines_orch_state` is the name of the orch state, `salt.state` indicates that we'll be running a salt state file, `- tgt: 'local-minion'` targets the 'local-minion' on our salt master machine, and `- sls: multiple_lines` indicates the salt state file we'll be running.
+`multiple_lines_orch_state` is the name of the orch state, `salt.state` indicates that we'll be running a salt state file, `- tgt: 'local-minion'` specifies the 'local-minion' on our salt master machine, and `- sls: multiple_lines` indicates the salt state file we'll be running.
 
-NOTE: `- sls: multiple_lines` indicates `multiple_lines.sls` is a direct child of the `file_root` `/srv/salt`. If hypothetically our `multiple_lines.sls` file was contained in a package named `multiple` in the following file system:
+NOTE: `- sls: multiple_lines` indicates `multiple_lines.sls` is a direct child of the `file_root`: `/srv/salt`. If hypothetically our `multiple_lines.sls` file was contained in a package named `multiple` in the following file system:
 ```BASH
 ├── srv
    └── salt
