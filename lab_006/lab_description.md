@@ -19,12 +19,12 @@ The provided `/srv/pillar/groceries.sls` pillar file is structured like so:
 ```YAML
 # file: /srv/pillar/groceries.sls
 
-list:
+cart:
   - cupcake
   - chocolate
   - buns
 ```
-Lets structure our variables.yaml file a bit differently and give our `list` the name `cart`:
+Lets duplicate this in variables.yaml:
 ```YAML
 # file: /files/variables.yaml
 
@@ -62,7 +62,6 @@ which translates to JSON in the following way:
   ]
 }
 ```
-So its helpful to remember we are importing a dictionary of lists this time, rather than just a list. 
 
 
 ## Assignment
