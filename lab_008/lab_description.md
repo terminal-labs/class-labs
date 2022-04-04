@@ -30,7 +30,7 @@ NOTE: `- sls: multiple_lines` indicates `multiple_lines.sls` is a direct child o
        └── orch
            └── multi.sls
 ```
-Then the path to `multiple_lines.sls` in the `sls:` argument would read `- sls: multiple.multiple_lines`. The file type `.sls` is never required when referencing packages or salt state files within an orch state. 
+Then the path to `multiple_lines.sls` in the `sls:` argument would read `- sls: multiple.multiple_lines`. The file type `.sls` is never required when referencing packages or salt state files within an orch state and dot notation is used for the path. 
 
 ## Assignment
 
