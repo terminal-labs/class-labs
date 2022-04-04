@@ -6,7 +6,7 @@ create_multiple_lines:
     - shell: /bin/bash
     - cwd: /home/ubuntu
     - names:
-      - pwd
+      - echo "bash version: ${BASH_VERSION}" > test.txt
 {% for value in values %}
       - echo 'the value is {{ value }}'
 {% endfor %}
