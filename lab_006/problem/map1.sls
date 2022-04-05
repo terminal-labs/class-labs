@@ -1,4 +1,4 @@
-# file: /srv/salt/pillarvalue1.sls
+# file: /srv/salt/map1.sls
 
 create_multiple_lines:
   cmd.run:

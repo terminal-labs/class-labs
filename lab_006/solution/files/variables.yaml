@@ -1,0 +1,7 @@
+# file: /files/variables.yaml
+
+cart:
+  - cupcake
+  - chocolate
+  - buns
+  

@@ -1,6 +1,7 @@
-# file: /srv/pillar/variables.yaml
+# file: /srv/pillar/groceries.sls
 
 cart:
   - cupcake
   - chocolate
   - buns
+  
